@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>js-connections</title>
-  <script defer src="js-connections.js" type="module"></script>
+  <script src="js-connections3.js"></script>
 </head>
 <style>
   div {
@@ -46,5 +46,47 @@
   <div id="three">div 3
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam expedita voluptatem vitae, natus similique, nam laboriosam saepe necessitatibus ut quos cum ex sed sunt maxime explicabo fuga quod sit tenetur!</p>
   </div>
+
+  <script>
+
+    const d1 = document.getElementById("one");
+    const d2 = document.getElementById("two");
+    const d3 = document.getElementById("three");
+
+    d1.connections({
+      to: '#two',
+    });
+
+    d2.connections({
+      to: '#three',
+    })
+
+    d2.connections("update");
+
+
+    // setInterval(function() {
+    //   d2.connections("update");
+    // }, 500);
+
+    // d1.connections({
+    //   to: d2,
+    //   class: 'related'
+    // });
+
+    // d2.connections({
+    //   to: d3,
+    //   class: 'related',
+    // })
+
+    // d2.connections("update");
+    // d2.connections("destroy");
+
+    // setInterval(function() {
+    //   d2.connections("update");
+    // }, 500);
+
+  </script>
+
 </body>
+
 </html>
