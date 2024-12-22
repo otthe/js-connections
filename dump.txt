@@ -1,0 +1,21 @@
+connect: 
+
+    // console.log(options.from);
+    // console.log(options.to);
+
+    // delete options.borderClasses;
+    // delete options.tag;
+    // delete options.from;
+    // delete options.to;
+    // delete options.within;
+
+    // within.forEach(container => {
+    //   const done = new Set();
+    //   end1.forEach(node1 => {
+    //     done.add(node1);
+    //     end2.filter(node2 => !done.has(node2)).forEach(node2 => {
+    //       createConnection(container, [node1, node2], options.tag, options.borderClasses, options);
+    //     });
+    //   });
+    //   console.log(done);
+    // });
