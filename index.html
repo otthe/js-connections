@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>js-connections</title>
-  <script src="js-connections3.js"></script>
+  <script src="js-connections4.js"></script>
 </head>
 <style>
   div {
@@ -38,13 +38,13 @@
 </style>
 <body>
   <div id="one">div 1
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero debitis quia velit ab quibusdam unde veritatis, magni nihil iste praesentium est harum natus nostrum nam delectus itaque voluptatum dolores necessitatibus!</p>
   </div>
   <div id="two">div 2
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci qui harum dolore odit suscipit accusamus magnam eveniet debitis aut perspiciatis eius doloremque libero animi itaque exercitationem, optio, incidunt voluptates a.</p>
   </div>
   <div id="three">div 3
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam expedita voluptatem vitae, natus similique, nam laboriosam saepe necessitatibus ut quos cum ex sed sunt maxime explicabo fuga quod sit tenetur!</p>
+  </div>
+  <div id="four" style="width: 100px; height: 100px; background-color: lightblue; position: absolute; top: 300px; left: 350px; cursor: grab;">
+    Drag Me
   </div>
 
   <script>
@@ -52,30 +52,58 @@
     const d1 = document.getElementById("one");
     const d2 = document.getElementById("two");
     const d3 = document.getElementById("three");
+    const draggable = document.getElementById("four");
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    draggable.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - draggable.offsetLeft;
+      offsetY = e.clientY - draggable.offsetTop;
+      draggable.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        draggable.style.left = `${e.clientX - offsetX}px`;
+        draggable.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      draggable.style.cursor = "grab";
+    });
 
     d1.connections({
-      to: '#two',
+      to: ['#two', '#four'],
     });
 
     d2.connections({
       to: '#three',
     })
 
-    //d1.connections("destroy");
+    d3.connections({
+      to: '#four'
+    })
 
     //d2.connections("update");
     //d1.connections("destroy");
 
     // const connections = document.querySelectorAll("connection");
     // setInterval(() => {
-    //   connections.forEach((conn) => conn.connections("update"));
+    //   //connections.forEach((conn) => conn.connections("update"));
     // }, 100);
 
      setInterval(() => {
+      d1.connections("update");
       d2.connections("update");
-    }, 500);
+      d3.connections("update");
+    }, 100);
 
-    d2.connections("update");
+    // d2.connections("update");
 
   </script>
 
