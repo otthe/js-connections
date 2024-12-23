@@ -1,8 +1,8 @@
 HTMLElement.prototype.connections = function (options) {
   if (options === "update") {
-    return processConnections(update, this);
+    return processConnections(updateConnection, this);
   } else if (options === "destroy") {
-    return processConnections(destroy, this);
+    return processConnections(destroyConnection, this);
   } else {
     options = Object.assign(
       {
@@ -125,6 +125,9 @@ HTMLElement.prototype.connections = function (options) {
     const data = connection._connectionData;
     console.log(data);
 
+    // connection.style.display = "block";
+    // connection.style.visibility = "visible";
+    // connection.style.opacity = "1";
 
     getState(data);
 
@@ -197,12 +200,20 @@ HTMLElement.prototype.connections = function (options) {
     if (data.hidden) {
       style += "display: none;";
     } else {
+      // data.css = {
+      //   ...data.css,
+      //   [`border-${v[0]}-width`]: 0,
+      //   [`border-${h[0]}-width`]: 0,
+      //   [`border-${v[1]}-width`]: border_h,
+      //   [`border-${h[1]}-width`]: border_w,
+      // };
       data.css = {
         ...data.css,
-        [`border-${v[0]}-width`]: 0,
-        [`border-${h[0]}-width`]: 0,
-        [`border-${v[1]}-width`]: border_h,
-        [`border-${h[1]}-width`]: border_w,
+        [`border-${v[0]}-width`]: "0", // Only set non-visual borders to 0
+        [`border-${h[0]}-width`]: "0",
+        [`border-${v[1]}-width`]: `${border_h}px`, // Use the calculated border width
+        [`border-${h[1]}-width`]: `${border_w}px`,
+        borderRadius: "50%",
       };
 
       const currentRect = connection.getBoundingClientRect();
@@ -230,6 +241,34 @@ HTMLElement.prototype.connections = function (options) {
     // Apply the specified method to each connection
     element._connections.forEach((connection) => {
       method(connection);
+    });
+  }
+
+  function updateConnection(connection) {
+    const data = connection._connectionData;
+    if (!data) {
+      console.error("No data found for this connection.");
+      return;
+    }
+    update(connection); // Call the update function already defined in your code
+  }
+  
+  // Destroy function passed to processConnections
+  function destroyConnection(connection) {
+    const data = connection._connectionData;
+    if (!data) {
+      console.error("No data found for this connection.");
+      return;
+    }
+  
+    // Remove the connection from the DOM
+    connection.remove();
+  
+    // Clean up references in connected nodes
+    data.nodes_dom.forEach((node) => {
+      if (node._connections) {
+        node._connections = node._connections.filter((conn) => conn !== connection);
+      }
     });
   }
 }

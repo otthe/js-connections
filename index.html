@@ -61,29 +61,21 @@
       to: '#three',
     })
 
+    //d1.connections("destroy");
+
+    //d2.connections("update");
+    //d1.connections("destroy");
+
+    // const connections = document.querySelectorAll("connection");
+    // setInterval(() => {
+    //   connections.forEach((conn) => conn.connections("update"));
+    // }, 100);
+
+     setInterval(() => {
+      d2.connections("update");
+    }, 500);
+
     d2.connections("update");
-
-
-    // setInterval(function() {
-    //   d2.connections("update");
-    // }, 500);
-
-    // d1.connections({
-    //   to: d2,
-    //   class: 'related'
-    // });
-
-    // d2.connections({
-    //   to: d3,
-    //   class: 'related',
-    // })
-
-    // d2.connections("update");
-    // d2.connections("destroy");
-
-    // setInterval(function() {
-    //   d2.connections("update");
-    // }, 500);
 
   </script>
 

@@ -1,4 +1,5 @@
-<!DOCTYPE html> <meta charset="utf-8" /> <title>jQuery Connections</title>
+<!DOCTYPE html> <meta charset="utf-8" /> 
+<title>jQuery Connections</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="jquery.connections.js"></script>
 <script>
@@ -17,7 +18,7 @@
       css: { color: "#d62" }
     });
     $("div.styles .anchor").connections({
-      to: "div.styles li:nth-child(3)",r
+      to: "div.styles li:nth-child(3)",
       within: ".styles",
       tag: "inner",
       css: { borderWidth: 0.5 }
@@ -41,9 +42,9 @@
     $("p, div").connections();
     $("connection:odd").addClass("odd");
     var connections = $("connection, inner");
-    setInterval(function() {
-      connections.connections("update");
-    }, 100);
+    // setInterval(function() {
+    //   connections.connections("update");
+    // }, 100);
   });
 </script>
 <style>

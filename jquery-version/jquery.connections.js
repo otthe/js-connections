@@ -143,6 +143,7 @@
 
   var update = function(connection) {
     var data = $.data(connection, "connection");
+    console.log(data);
     getState(data);
     if (data.unmodified) {
       return;
