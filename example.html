@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>js-connections</title>
-  <script src="js-connections4.js"></script>
+  <script src="js-connections.js"></script>
 </head>
 <style>
   div {
@@ -89,24 +89,13 @@
       to: '#four'
     })
 
-    //d2.connections("update");
     //d1.connections("destroy");
-
-    // const connections = document.querySelectorAll("connection");
-    // setInterval(() => {
-    //   //connections.forEach((conn) => conn.connections("update"));
-    // }, 100);
 
      setInterval(() => {
       d1.connections("update");
       d2.connections("update");
       d3.connections("update");
     }, 100);
-
-    // d2.connections("update");
-
   </script>
-
 </body>
-
 </html>
